@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">MunchDelivery</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <nav>
+            <ul id="menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="meus_pedidos.html">Meus Pedidos</a></li>
+                <li><a href="editar_perfil.html">Editar Perfil</a></li>
+                <li><a href="index.html">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="perfil">
+        <div class="perfil-info">
+            <h1 id="perfil-username">Nome de Usuário</h1>
+            <p id="perfil-email">Email: </p>
+            <p id="perfil-telefone">Telefone: </p>
+            <p id="perfil-endereco">Endereço: </p>
+        </div>
+        <div class="perfil-imagem">
+            <img src="imagens/Gabriel.JPEG" alt="Imagem de Perfil">
+        </div>
+    </section>
+
+    <section class="historico-pedidos">
+        <h2>Histórico de Pedidos</h2>
+        <ul>
+            <li>Pedido #12345 - Pizza - 10/04/2025</li>
+            <li>Pedido #12344 - Sushi - 09/04/2025</li>
+            <li>Pedido #12343 - Lanche - 08/04/2025</li>
+        </ul>
+    </section>
+
+    <footer>
+        <div class="MunchDelivery">
+            <p>&copy; 2025 MunchDelivery</p>
+        </div>
+        <div class="Devs">
+            <h5 class="white-text">Desenvolvedores</h5>
+            <ul>
+                <li><a class="devnames" href="https://instagram.com/2k.gbz">Gabriel de Azevedo</a></li>
+                <li><a class="devnames" href="">Hugo Molliary</a></li>
+                <li><a class="devnames" href="">Victor Alejandro</a></li>
+                <li><a class="devnames" href="">José Luiz</a></li>
+                <li><a class="devnames" href="">Talles Groetaers</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Carregar dados do perfil se existirem
+            const userProfile = JSON.parse(localStorage.getItem("userProfile"));
+            if (userProfile) {
+                document.getElementById("perfil-username").textContent = userProfile.username || 'Nome não definido';
+                document.getElementById("perfil-email").textContent = `Email: ${userProfile.email || 'Email não definido'}`;
+                document.getElementById("perfil-telefone").textContent = `Telefone: ${userProfile.telefone || 'Telefone não definido'}`;
+                document.getElementById("perfil-endereco").textContent = `Endereço: ${userProfile.endereco || 'Endereço não definido'}`;
+            }
+        });
+    </script>
+</body>
+</html>

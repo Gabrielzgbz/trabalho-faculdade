@@ -1,168 +1,342 @@
-/* Reset básico */
+/* Reset de estilos padrões */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Estilos globais */
+/* Estilo do corpo da página */
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
-    line-height: 1.6;
+    background-color: #f4f4f4;
     color: #333;
+    background-image: url(imagens/background.jpg);
+    filter: blur(80%);
 }
 
+/* Estilo do cabeçalho */
 header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+    background-color: #e63946;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 header .logo {
     font-size: 24px;
     font-weight: bold;
+    color: #ffffff;
 }
 
 nav ul {
     list-style: none;
+    display: flex;
     padding: 0;
-    margin: 10px 0 0;
+    margin: 0;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger .bar {
+    height: 3px;
+    width: 25px;
+    background-color: #ffffff;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #e63946;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 10px;
+        gap: 8px;
+    }
+    nav ul.active {
+        display: flex;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
 }
 
 nav ul li {
-    display: inline;
     margin: 0 15px;
 }
 
 nav ul li a {
-    color: #fff;
     text-decoration: none;
-    font-size: 16px;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 8px 12px;
+    position: relative;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
+/* Animação de hover nos links de navegação */
+nav ul li a:hover {
+    border-radius: 5px; /* Bordas arredondadas */
+    transform: translateY(-5px); /* Levanta o link */
+    color: #000000; /* Cor de destaque ao passar o mouse */
+}
+
+/* Linha animada abaixo do link */
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #000000;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+/* Animação da linha quando o link é hover */
+nav ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Estilo do banner principal */
 .banner {
-    background: url('assets/banner.jpg') no-repeat center center;
     background-size: cover;
-    color: #666;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 100px 20px;
+    color: #000000;
+    filter: blur(100%);
 }
 
 .banner h1 {
     font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.banner p {
+    font-size: 20px;
     margin-bottom: 20px;
 }
 
-.banner button {
-    background: #f00;
+.cta-buttons button {
+    padding: 15px 30px;
+    margin: 5px;
+    font-size: 18px;
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    font-size: 18px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-section {
-    padding: 20px;
+.cta-buttons button:hover {
+    background-color: #000000;
+    transform: scale(1.05); /* Aumenta o botão ao passar o mouse */
 }
 
-#menu {
-    background: #f4f4f4;
-}
-
-#menu h2 {
+/* Estilo das categorias */
+.categories {
+    background-color: #fff;
+    padding: 40px 20px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+}
+
+.categories h2 {
     font-size: 28px;
+    margin-bottom: 30px;
 }
 
-.menu-category {
-    margin: 0 auto;
-    max-width: 1200px;
-}
-
-.menu-item, .menu-item2 {
+.category-list {
     display: flex;
-    align-items: center;
-    background: #fff;
-    border: 1px solid #ddd;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.category-item {
+    flex: 1 1 150px;
+    text-align: center;
+    padding: 20px;
+    margin: 10px;
+    background-color: #f4f4f4;
     border-radius: 8px;
-    margin-bottom: 20px;
-    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.menu-item img, .menu-item2 img {
-    max-width: 150px;
-    margin-right: 15px;
-    border-radius: 8px;
-}
-
-.item-details, .item-details2 {
-    flex: 1;
-}
-
-.item-details h4, .item-details2 h4 {
-    font-size: 20px;
+.category-item img {
+    max-width: 80px;
     margin-bottom: 10px;
 }
 
-.item-details p, .item-details2 p {
-    font-size: 16px;
-    color: #666;
+.category-item p {
+    font-size: 18px;
+    font-weight: bold;
 }
 
+/* Efeito de hover nas categorias */
+.category-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Sombra maior */
+}
+
+/* Estilo do rodapé */
 footer {
-    background: #333;
+    background-color: #e63946;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
-    margin-top: 20px;
+    padding: 15px;
+    font-weight: bold;
+    margin-top: 40px;
+    clear: both;
+    overflow: hidden;
 }
 
-/* Formulários */
+footer .Devs {
+    text-align: left;
+}
+
+footer .devnames {
+    color: white;
+}
+
+
+/* Estilo da seção do formulário */
 .form-section {
-    width: 300px;
+    max-width: 400px;
     margin: 50px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .form-section h2 {
     text-align: center;
     margin-bottom: 20px;
+    font-size: 30px;
+    color: #333;
 }
 
-.form-section form {
+form {
     display: flex;
     flex-direction: column;
 }
 
-.form-section label {
+label {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px;
+    background-color: #e63946;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #050505;
+}
+
+/* Estilo da seção do restaurante */
+.restaurant-section {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-section h1 {
+    text-align: center;
+    color: #e63946;
+    margin-bottom: 10px;
+}
+
+.restaurant-section p {
+    text-align: center;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu-item {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    transition: box-shadow 0.3s ease, box-shadow 0.3s ease-in-out;
+}
+
+.menu-item:hover {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Sombra maior ao passar o mouse */
+}
+
+.menu-item img {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.menu-info {
+    max-width: 600px;
+}
+
+.menu-info h3 {
+    color: #e63946;
     margin-bottom: 5px;
 }
 
-.form-section input {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.menu-info p {
+    color: #555;
+    margin-bottom: 5px;
+    text-align: start;
 }
 
-.form-section button {
-    padding: 10px;
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.menu-info strong {
+    color: #333;
 }
 
-.form-section button:hover {
-    background-color: #3f0000;
-}
-
+/* Formulários */
 .form-section p {
     text-align: center;
     margin-top: 10px;
@@ -177,62 +351,7 @@ footer {
     text-decoration: underline;
 }
 
-/* Estilo para a seção do restaurante */
-.restaurant-section {
-    text-align: center;
-    margin: 20px;
-}
-
-.restaurant-section h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.restaurant-section p {
-    font-size: 18px;
-    margin-bottom: 30px;
-}
-
-.menu {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.menu h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-.menu-item {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-
-.menu-item h3 {
-    font-size: 24px;
-    margin-bottom: 5px;
-}
-
-.menu-item p {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.menu-item strong {
-    font-size: 18px;
-    color: #333;
-}
-
 /* Estilo para a lista de restaurantes */
-.restaurant-section {
-    text-align: center;
-    margin: 20px;
-}
-
 .menu-item {
     display: flex;
     align-items: center;
@@ -275,3 +394,155 @@ footer {
 .btn:hover {
     background-color: #5a0000;
 }
+
+/* Estilo do rodapé */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #fff;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Estilo para a seção sobre */
+.about-section {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-section h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 32px;
+    color: #333;
+}
+
+.about-section h2 {
+    font-size: 26px;
+    margin-top: 20px;
+    color: #333;
+}
+
+.about-section p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+hr {
+    margin: 30px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+/* ======================== */
+/* SEÇÃO DE PERFIL */
+/* ======================== */
+.perfil {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 40px;
+    background-color: #fff;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+.perfil-info {
+    flex: 1;
+    text-align: left;
+}
+
+.perfil-info h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.perfil-info p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.perfil-imagem {
+    flex: 1;
+    text-align: center;
+}
+
+.perfil-imagem img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #e63946;
+}
+
+/* ======================== */
+/* SEÇÃO DE HISTÓRICO DE PEDIDOS */
+/* ======================== */
+.historico-pedidos {
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+.historico-pedidos h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.historico-pedidos ul {
+    list-style: none;
+}
+
+.historico-pedidos li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+/* ======================== */
+/* SEÇÃO DE MEUS PEDIDOS */
+/* ======================== */
+.meus-pedidos {
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+.meus-pedidos h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.pedido {
+    border: 1px solid #e63946;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+}
+
+.pedido h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.pedido p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+.logo a {
+    text-decoration: none; /* remove o sublinhado */
+    color: inherit;         /* mantém a cor do texto da logo */
+    font-weight: bold;
+    font-size: 24px;
+  }  
